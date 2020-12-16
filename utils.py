@@ -326,7 +326,7 @@ class FilterLayers_(QgsTask):
                 layer =  PROJECT.mapLayersByName(item)[0]
                 if 'dbname' in layer.dataProvider().dataSourceUri():
                     self.layers['sql'].append(layer)
-                
+
                 else:
                     self.layers['shape'].append(layer)
 
@@ -357,11 +357,11 @@ class FilterLayers_(QgsTask):
                 self.filter_commune['shape'] = ''
 
 
-                if self.current_index == 1:
+                if self.current_index != 4:
                     self.filter_basic()
 
 
-                elif self.current_index == 2:
+                elif self.current_index == 4:
 
                     expression = self.dockwidget.plainTextEdit_expression.toPlainText()
                     expression = expression.replace("'", "\'")
