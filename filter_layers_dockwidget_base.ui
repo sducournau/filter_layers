@@ -368,40 +368,12 @@ color:black;</string>
        <enum>QFrame::Panel</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="page_5">
        <attribute name="label">
         <string>MODE D'EMPLOI</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>481</width>
-          <height>283</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="sizeIncrement">
-            <size>
-             <width>300</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;Prérequis&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Pour faire fonctionner le plugin, il faudra au préalable avoir installé QGIS dans sa version étendue (avec OSGeo4W).&lt;/p&gt;&lt;p&gt;Pour pouvoir faire fonctionner le plugin correctement il faudra dans un premier temps installer les dépendances python suivantes :&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;regexp&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Pour ce faire, cherchez dans la barre de recherche Windows le logiciel « OSGeo4W Shell » et lancez le programme. Plusieurs commandes doivent être rentrées (copier/coller) et validées avec la touche Entrée.&lt;/p&gt;&lt;p&gt;Une fois dans l’invite de commande, tapez la commande suivante :&lt;/p&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Courier New';&quot;&gt;py3_env&lt;/span&gt;&lt;/pre&gt;&lt;p&gt;Il vous faut taper ensuite la ligne de commande suivante :&lt;/p&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Courier New';&quot;&gt;python –m pip install regexp&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
       </widget>
       <widget class="QWidget" name="page">
        <property name="geometry">

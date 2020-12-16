@@ -200,7 +200,7 @@ class FilterLayers_(QgsTask):
             field_name = 'za_zpm'
             from_layer = PROJECT.mapLayersByName(LAYERS_NAME['CONTOURS_COMMUNES'][0])[0]
             self.filter_from = 2
-            self.filter_advanced(expression, from_layer, field_name)
+            self.filter_advanced(expression,from_layer, field_name)
 
 
 
@@ -237,8 +237,8 @@ class FilterLayers_(QgsTask):
             selected_items['shape'] = []
 
             self.filter_items = {}
-            self.filter_items['sql'] = None
-            self.filter_items['shape'] = None
+            self.filter_items['sql'] = ''
+            self.filter_items['shape'] = ''
 
             for feature in from_layer.getFeatures():
                 feature_field = feature.attributes()[idx]
@@ -322,11 +322,14 @@ class FilterLayers_(QgsTask):
             selected_layers_data = self.dockwidget.comboBox_select_layers.checkedItems()
 
             for item in selected_layers_data:
+
                 layer =  PROJECT.mapLayersByName(item)[0]
                 if 'dbname' in layer.dataProvider().dataSourceUri():
                     self.layers['sql'].append(layer)
+                
                 else:
                     self.layers['shape'].append(layer)
+
 
 
 
@@ -338,20 +341,20 @@ class FilterLayers_(QgsTask):
                 self.selected_commune_data = self.dockwidget.comboBox_select_commune.checkedItems()
 
                 self.filter_za_nro = {}
-                self.filter_za_nro['sql'] = None
-                self.filter_za_nro['shape'] = None
+                self.filter_za_nro['sql'] = ''
+                self.filter_za_nro['shape'] = ''
 
                 self.filter_za_zpm = {}
-                self.filter_za_zpm['sql'] = None
-                self.filter_za_zpm['shape'] = None
+                self.filter_za_zpm['sql'] = ''
+                self.filter_za_zpm['shape'] = ''
 
                 self.filter_za_zpa = {}
-                self.filter_za_zpa['sql'] = None
-                self.filter_za_zpa['shape'] = None
+                self.filter_za_zpa['sql'] = ''
+                self.filter_za_zpa['shape'] = ''
 
                 self.filter_commune = {}
-                self.filter_commune['sql'] = None
-                self.filter_commune['shape'] = None
+                self.filter_commune['sql'] = ''
+                self.filter_commune['shape'] = ''
 
 
                 if self.current_index == 1:
@@ -365,7 +368,7 @@ class FilterLayers_(QgsTask):
                     layer_name = self.dockwidget.comboBox_multi_layers.currentText()
                     field_name = self.dockwidget.mFieldComboBox_multi_fields.currentText()
                     from_layer = PROJECT.mapLayersByName(layer_name)[0]
-                    self.filter_advanced(expression, layer_name, from_layer)
+                    self.filter_advanced(expression, from_layer, field_name)
 
             if self.action == 'end':
                 for layer in self.layers['sql']:
