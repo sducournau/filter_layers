@@ -197,7 +197,7 @@ class FilterLayers_(QgsTask):
             self.create_expressions('commune')
 
             expression = self.filter_commune['sql']
-            field_name = '"za_zpm"'
+            field_name = 'za_zpm'
             from_layer = PROJECT.mapLayersByName(LAYERS_NAME['CONTOURS_COMMUNES'][0])[0]
             self.filter_from = 2
             self.filter_advanced(expression, from_layer, field_name)
@@ -255,8 +255,8 @@ class FilterLayers_(QgsTask):
 
 
             for item in list_items:
-                selected_items['sql'].append(field_name + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field_name + ' ~ \'' + str(item) + ',\'' )
-                selected_items['shape'].append(field_name + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field_name + ' ~ \'' + str(item) + ',\'' )
+                selected_items['sql'].append('"' + str(field_name) + '" ~ \'' + str(item) + '$\'' + ' OR "' +  str(field_name) + '" ~ \'' + str(item) + ',\'' )
+                selected_items['shape'].append('"' + str(field_name) + '" LIKE \'' + str(item) + '\'')
 
             self.filter_items['sql'] = ' OR '.join(selected_items['sql'])
             self.filter_items['shape'] = ' OR '.join(selected_items['shape'])
