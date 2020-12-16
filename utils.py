@@ -357,11 +357,12 @@ class FilterLayers_(QgsTask):
                 self.filter_commune['shape'] = ''
 
 
-                if self.current_index != 4:
+                if self.current_index != 3:
+
                     self.filter_basic()
 
 
-                elif self.current_index == 4:
+                elif self.current_index == 3:
 
                     expression = self.dockwidget.plainTextEdit_expression.toPlainText()
                     expression = expression.replace("'", "\'")
