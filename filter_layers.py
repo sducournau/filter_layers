@@ -60,7 +60,7 @@ class FilterLayers:
 
 
 
-        iface.mainWindow().setWindowTitle("WELCOME ... to ... CIRCET CORPORATION")
+        # iface.mainWindow().setWindowTitle("WELCOME ... to ... CIRCET CORPORATION")
 
         # Save reference to the QGIS interface
         self.iface = iface

@@ -23,112 +23,339 @@ class FilterLayers_(QgsTask):
 
         self.filter_from = self.dockwidget.checkBox_filter_from.checkState()
 
+    def create_expressions(self, field):
+
+        def create_expression_za_nro(field):
+
+            list_za_nro = {}
+            list_za_nro['sql'] = []
+            list_za_nro['shape'] = []
+
+            for item in self.selected_za_nro_data:
+                list_za_nro['sql'].append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item) + ',\'' )
+                list_za_nro['shape'].append(field + ' LIKE \'' + str(item) + '\'' )
+            self.filter_za_nro['sql'] = ' OR '.join(list_za_nro['sql'])
+            self.filter_za_nro['shape'] = ' OR '.join(list_za_nro['shape'])
+
+        def create_expression_za_zpm(field):
+
+            list_za_zpm = {}
+            list_za_zpm['sql'] = []
+            list_za_zpm['shape'] = []
+
+            list_za_nro = {}
+            list_za_nro['sql'] = []
+            list_za_nro['shape'] = []
+
+            for item in self.selected_za_zpm_data:
+
+                field = '"za_zpm"'
+                list_za_zpm['sql'].append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item) + ',\'' )
+                list_za_zpm['shape'].append(field + ' LIKE \'' + str(item) + '\'' )
+
+                field = '"za_nro"'
+                list_za_nro['sql'].append(field + ' ~ \'' + str(item[:5]) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item[:5]) + ',\'' )
+                list_za_nro['shape'].append(field + ' LIKE \'' + str(item[:5]) + '\'' )
+
+            self.filter_za_zpm['sql'] = ' OR '.join(list_za_zpm['sql'])
+            self.filter_za_zpm['shape'] = ' OR '.join(list_za_zpm['shape'])
+
+            if len(self.selected_za_nro_data) < 1:
+                self.filter_za_nro['sql'] = ' OR '.join(list_za_nro['sql'])
+                self.filter_za_nro['shape'] = ' OR '.join(list_za_nro['shape'])
+
+
+        def create_expression_za_zpa(field):
+
+            list_za_zpa = {}
+            list_za_zpa['sql'] = []
+            list_za_zpa['shape'] = []
+
+            for item in self.selected_za_zpa_data:
+                item_zpm = re.search('[A-Z0-9_]*_PA',item)[0][:-3]
+
+                field = '"za_zpa"'
+                list_za_zpa['sql'].append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \'' + str(item) + ',\'' )
+                list_za_zpa['shape'].append(field + ' LIKE \'' + str(item) + '\'' )
+
+            self.filter_za_zpa['sql'] = ' OR '.join(list_za_zpa['sql'])
+            self.filter_za_zpa['shape'] = ' OR '.join(list_za_zpa['shape'])
+
+
+
+
+        def create_expression_commune(field):
+
+            list_commune = {}
+            list_commune['sql'] = []
+            list_commune['shape'] = []
+
+            for item in self.selected_commune_data:
+
+                field = '"commune"'
+                list_commune['sql'].append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item) + ',\'' )
+
+            self.filter_commune['sql'] = ' OR '.join(list_commune['sql'])
+            self.filter_commune['shape'] = ' OR '.join(list_commune['shape'])
+
+
+
+        if field == 'za_nro':
+            create_expression_za_nro(field)
+
+        elif field == 'za_zpm':
+            create_expression_za_zpm(field)
+
+        if field == 'za_zpa':
+            create_expression_za_zpa(field)
+
+        if field == 'commune':
+            create_expression_commune(field)
+
+
+
+
+
+    def filter_basic(self):
+
+        if len(self.selected_za_nro_data) > 0:
+
+            self.create_expressions('za_nro')
+
+            for layer in self.layers['sql']:
+                field_zpm_idx = layer.fields().indexFromName('za_nro')
+                if field_zpm_idx != -1:
+                    layer.setSubsetString(self.filter_za_nro['sql'])
+
+            for layer in self.layers['shape']:
+                field_zpm_idx = layer.fields().indexFromName('za_nro')
+                if field_zpm_idx != -1:
+                    layer.setSubsetString(self.filter_za_nro['shape'])
+
+            if len(self.selected_za_zpm_data) < 1:
+                self.populate.populate_za_zpm()
+            if len(self.selected_za_zpa_data) < 1:
+                self.populate.populate_za_zpa()
+            if len(self.selected_commune_data) < 1:
+                self.populate.populate_commune()
+
+
+        if len(self.selected_za_zpm_data) > 0:
+
+            self.create_expressions('za_zpm')
+
+            for layer in self.layers['sql']:
+                field_zpm_idx = layer.fields().indexFromName('za_zpm')
+                if field_zpm_idx == -1:
+                    layer.setSubsetString(self.filter_za_nro['sql'])
+                else:
+                    layer.setSubsetString(self.filter_za_zpm['sql'])
+
+            for layer in self.layers['shape']:
+                field_zpm_idx = layer.fields().indexFromName('za_zpm')
+                if field_zpm_idx == -1:
+                    layer.setSubsetString(self.filter_za_nro['shape'])
+                else:
+                    layer.setSubsetString(self.filter_za_zpm['shape'])
+
+            if len(self.selected_commune_data) < 1:
+                self.populate.populate_commune()
+            if len(self.selected_za_zpa_data) < 1:
+                self.populate.populate_za_zpa()
+
+
+
+        if len(self.selected_za_zpa_data) > 0:
+
+            self.create_expressions('za_zpa')
+
+            for layer in self.layers:
+                for layer in self.layers['sql']:
+                    field_zpm_idx = layer.fields().indexFromName('za_zpm')
+                    field_zpa_idx = layer.fields().indexFromName('za_zpa')
+                    if field_zpa_idx != -1 and field_zpm_idx != -1:
+                        layer.setSubsetString(self.filter_za_zpa['sql'])
+                    elif field_zpa_idx == -1 and field_zpm_idx != -1:
+                        layer.setSubsetString(self.filter_za_zpm['sql'])
+                    elif field_zpm_idx == -1:
+                        layer.setSubsetString(self.filter_za_nro['sql'])
+
+
+                for layer in self.layers['shape']:
+                    field_zpm_idx = layer.fields().indexFromName('za_zpm')
+                    field_zpa_idx = layer.fields().indexFromName('za_zpa')
+                    if field_zpa_idx != -1 and field_zpm_idx != -1:
+                        layer.setSubsetString(self.filter_za_zpa['shape'])
+                    elif field_zpa_idx == -1 and field_zpm_idx != -1:
+                        layer.setSubsetString(self.filter_za_zpm['shape'])
+                    elif field_zpm_idx == -1:
+                        layer.setSubsetString(self.filter_za_nro['shape'])
+
+
+        if len(self.selected_commune_data) > 0:
+
+            self.create_expressions('commune')
+
+            expression = self.filter_commune['sql']
+            field_name = '"za_zpm"'
+            from_layer = PROJECT.mapLayersByName(LAYERS_NAME['CONTOURS_COMMUNES'][0])[0]
+            self.filter_from = 2
+            self.filter_advanced(expression, from_layer, field_name)
+
+
+
+
+
+    def filter_advanced(self, expression, from_layer, field_name):
+
+        if 'dbname' in from_layer.dataProvider().dataSourceUri():
+            layer_type = 'sql'
+        else:
+            layer_type = 'shape'
+
+        print(expression)
+        if self.filter_from == 2:
+
+            if len(self.selected_za_nro_data) > 0:
+                from_layer.setSubsetString('(' + self.filter_za_nro[layer_type] + ') AND ' + expression)
+
+            elif len(self.selected_za_zpm_data) > 0:
+                from_layer.setSubsetString('(' + self.filter_za_zpm[layer_type] + ') AND ' + expression)
+
+            elif len(self.selected_za_zpa_data) > 0:
+                from_layer.setSubsetString('(' + self.filter_za_zpa[layer_type] + ') AND ' + expression)
+
+            else:
+                from_layer.setSubsetString(expression)
+
+
+            idx = from_layer.fields().indexFromName(field_name)
+            list_items = []
+
+            selected_items = {}
+            selected_items['sql'] = []
+            selected_items['shape'] = []
+
+            self.filter_items = {}
+            self.filter_items['sql'] = None
+            self.filter_items['shape'] = None
+
+            for feature in from_layer.getFeatures():
+                feature_field = feature.attributes()[idx]
+
+                if ',' in feature_field:
+                    feature_array = feature_field.split(',')
+                    for feat_field in feature_array:
+                        if feat_field not in list_items:
+                            list_items.append(feat_field)
+
+                else:
+                    if feature_field not in list_items:
+                        list_items.append(feature_field)
+
+
+            for item in list_items:
+                selected_items['sql'].append(field_name + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field_name + ' ~ \'' + str(item) + ',\'' )
+                selected_items['shape'].append(field_name + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field_name + ' ~ \'' + str(item) + ',\'' )
+
+            self.filter_items['sql'] = ' OR '.join(selected_items['sql'])
+            self.filter_items['shape'] = ' OR '.join(selected_items['shape'])
+
+            for layer in self.layers['sql']:
+                if layer.name() != from_layer.name():
+                    field_idx = layer.fields().indexFromName(field_name)
+                    if field_idx == -1:
+                        print('Le champ ' + field_name + ' non présent dans la couche ' + layer.name())
+                    else:
+                        layer.setSubsetString(self.filter_items['sql'])
+
+            for layer in self.layers['shape']:
+                if layer.name() != from_layer.name():
+                    field_idx = layer.fields().indexFromName(field_name)
+                    if field_idx == -1:
+                        print('Le champ ' + field_name + ' non présent dans la couche ' + layer.name())
+                    else:
+                        layer.setSubsetString(self.filter_items['shape'])
+
+
+
+
+        else:
+            if len(self.selected_za_nro_data) > 0:
+                from_layer.setSubsetString('(' + self.filter_za_nro[layer_type] + ') AND ' + expression)
+
+            elif len(self.selected_za_zpm_data) > 0:
+
+
+                field_idx = layer.fields().indexFromName(field_name)
+                if field_idx == -1:
+                    print('Le champ ' + field_name + ' non présent dans la couche ' + layer.name())
+                else:
+                    from_layer.setSubsetString('(' + self.filter_za_zpm[layer_type] + ') AND ' + expression)
+
+            elif len(self.selected_za_zpa_data) > 0:
+
+
+                field_zpm_idx = layer.fields().indexFromName('za_zpm')
+                field_zpa_idx = layer.fields().indexFromName('za_zpa')
+                if field_zpa_idx == -1 and field_zpm_idx != -1:
+                    from_layer.setSubsetString('(' + self.filter_za_zpm[layer_type] + ') AND ' + expression)
+                elif field_zpm_idx == -1:
+                    from_layer.setSubsetString('(' + self.filter_za_nro[layer_type] + ') AND ' + expression)
+                else:
+                    from_layer.setSubsetString('(' + self.filter_za_zpa[layer_type] + ') AND ' + expression)
+
+            elif len(self.selected_commune_data) > 0:
+                from_layer.setSubsetString(self.filter_commune[layer_type] + ' AND ' + expression)
+
+
+
+
 
     def run(self):
 
         try:
-            self.layers = []
+            self.layers = {}
+            self.layers['sql'] = []
+            self.layers['shape'] = []
+
             selected_layers_data = self.dockwidget.comboBox_select_layers.checkedItems()
 
             for item in selected_layers_data:
-                self.layers.append(PROJECT.mapLayersByName(item)[0])
-
+                layer =  PROJECT.mapLayersByName(item)[0]
+                if 'dbname' in layer.dataProvider().dataSourceUri():
+                    self.layers['sql'].append(layer)
+                else:
+                    self.layers['shape'].append(layer)
 
 
 
             if self.action == 'start':
 
-                selected_za_nro_data = self.dockwidget.comboBox_select_za_nro.checkedItems()
-                selected_za_zpm_data = self.dockwidget.comboBox_select_za_zpm.checkedItems()
-                selected_za_zpa_data = self.dockwidget.comboBox_select_za_zpa.checkedItems()
-                selected_commune_data = self.dockwidget.comboBox_select_commune.checkedItems()
-                selected_za_nro = []
-                selected_za_zpm = []
-                selected_za_zpa = []
-                selected_commune = []
+                self.selected_za_nro_data = self.dockwidget.comboBox_select_za_nro.checkedItems()
+                self.selected_za_zpm_data = self.dockwidget.comboBox_select_za_zpm.checkedItems()
+                self.selected_za_zpa_data = self.dockwidget.comboBox_select_za_zpa.checkedItems()
+                self.selected_commune_data = self.dockwidget.comboBox_select_commune.checkedItems()
 
+                self.filter_za_nro = {}
+                self.filter_za_nro['sql'] = None
+                self.filter_za_nro['shape'] = None
 
-                field = '"commune"'
-                selected_commune.append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item) + ',\'' )
-                filter_commune = ' OR '.join(selected_commune)
+                self.filter_za_zpm = {}
+                self.filter_za_zpm['sql'] = None
+                self.filter_za_zpm['shape'] = None
 
+                self.filter_za_zpa = {}
+                self.filter_za_zpa['sql'] = None
+                self.filter_za_zpa['shape'] = None
 
-                field = '"za_nro"'
-                for item in selected_za_nro_data:
-                    selected_za_nro.append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item) + ',\'' )
-                filter_za_nro = ' OR '.join(selected_za_nro)
-
-
-
-                for item in selected_za_zpm_data:
-                    field = '"za_zpm"'
-                    selected_za_zpm.append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item) + ',\'' )
-                    field = '"za_nro"'
-                    selected_za_nro.append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item) + ',\'' )
-                filter_za_zpm = ' OR '.join(selected_za_zpm)
-                filter_za_nro = ' OR '.join(selected_za_nro)
-
-
-                for item in selected_za_zpa_data:
-                    item_zpm = re.search('[A-Z0-9_]*_PA',item)[0][:-3]
-                    print(item_zpm)
-                    field = '"za_nro"'
-                    selected_za_nro.append(field + ' ~ \'' + str(item[:5]) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item[:5]) + ',\'' )
-                    field = '"za_zpm"'
-                    selected_za_zpm.append(field + ' ~ \'' + str(item_zpm) + '$\'' + ' OR ' +  field + ' ~ \''  + str(item_zpm) + ',\'' )
-                    field = '"za_zpa"'
-                    selected_za_zpa.append(field + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field + ' ~ \'' + str(item) + ',\'' )
-                filter_za_nro = ' OR '.join(selected_za_nro)
-                filter_za_zpm = ' OR '.join(selected_za_zpm)
-                filter_za_zpa = ' OR '.join(selected_za_zpa)
+                self.filter_commune = {}
+                self.filter_commune['sql'] = None
+                self.filter_commune['shape'] = None
 
 
                 if self.current_index == 1:
-
-                    if len(selected_za_zpm_data) < 1 and len(selected_za_zpa_data) < 1 and len(selected_commune_data) < 1 and len(selected_za_nro_data) > 0:
-                        for layer in self.layers:
-                            layer.setSubsetString(filter_za_nro)
-                        self.populate.populate_za_zpm()
-                        self.populate.populate_za_zpa()
-                        self.populate.populate_commune()
-
-                    elif len(selected_za_zpm_data) > 0 and len(selected_za_zpa_data) < 1:
-
-                        for layer in self.layers:
-                            field_zpm_idx = layer.fields().indexFromName('za_zpm')
-                            if field_zpm_idx == -1:
-                                layer.setSubsetString(filter_za_nro)
-                            else:
-                                layer.setSubsetString(filter_za_zpm)
-                        if len(selected_commune_data) < 1:
-                            self.populate.populate_commune()
-                        if len(selected_za_zpa_data) < 1:
-                            self.populate.populate_za_zpa()
-
-                    elif len(selected_za_zpa_data) > 0:
-
-                        for layer in self.layers:
-                            field_zpm_idx = layer.fields().indexFromName('za_zpm')
-                            field_zpa_idx = layer.fields().indexFromName('za_zpa')
-                            if field_zpa_idx == -1 and field_zpm_idx != -1:
-                                layer.setSubsetString(filter_za_zpm)
-                            elif field_zpm_idx == -1:
-                                layer.setSubsetString(filter_za_nro)
-                            else:
-                                layer.setSubsetString(filter_za_zpa)
-
-                        if len(selected_commune_data) < 1:
-                            self.populate.populate_commune()
-
-
-                    elif len(selected_commune_data) > 0:
-
-                        for layer in self.layers:
-
-                            layer.setSubsetString(filter_commune)
-
-
-
+                    self.filter_basic()
 
 
                 elif self.current_index == 2:
@@ -138,92 +365,14 @@ class FilterLayers_(QgsTask):
                     layer_name = self.dockwidget.comboBox_multi_layers.currentText()
                     field_name = self.dockwidget.mFieldComboBox_multi_fields.currentText()
                     from_layer = PROJECT.mapLayersByName(layer_name)[0]
-
-                    if self.filter_from == 2:
-
-
-
-
-
-                        if len(selected_za_zpm_data) < 1 and len(selected_za_zpa_data) < 1 and len(selected_commune_data) < 1 and len(selected_za_nro_data) > 0:
-                            from_layer.setSubsetString('(' + filter_za_nro + ') AND ' + expression)
-
-                        elif len(selected_za_zpm_data) > 0:
-                            from_layer.setSubsetString('(' + filter_za_zpm + ') AND ' + expression)
-
-                        elif len(selected_za_zpa_data) > 0:
-                            from_layer.setSubsetString('(' + filter_za_zpa + ') AND ' + expression)
-
-                        elif len(selected_commune_data) > 0:
-                            from_layer.setSubsetString('(' + filter_commune + ') AND ' + expression)
-                        else:
-                            from_layer.setSubsetString(expression)
-
-
-                        idx = from_layer.fields().indexFromName(field_name)
-                        list_items = []
-                        selected_items = []
-                        filter_items = ''
-
-                        for feature in from_layer.getFeatures():
-
-                            if feature.attributes()[idx] not in list_items:
-                                list_items.append(feature.attributes()[idx])
-
-
-                        for item in list_items:
-                            selected_items.append(field_name + ' ~ \'' + str(item) + '$\'' + ' OR ' +  field_name + ' ~ \'' + str(item) + ',\'' )
-
-                        filter_items = ' OR '.join(selected_items)
-                        for layer in self.layers:
-                            if layer.name() != from_layer.name():
-                                field_idx = layer.fields().indexFromName(field_name)
-                                if field_idx == -1:
-                                    print('Le champ ' + field_name + ' non présent dans la couche ' + layer.name())
-                                else:
-                                    layer.setSubsetString(filter_items)
-
-
-
-
-                    else:
-                        if len(selected_za_zpm_data) < 1 and len(selected_za_zpa_data) < 1 and len(selected_commune_data) < 1 and len(selected_za_nro_data) > 0:
-
-                            from_layer.setSubsetString('(' + filter_za_nro + ') AND ' + expression)
-
-                        elif len(selected_za_zpm_data) > 0:
-
-
-                            field_idx = layer.fields().indexFromName(field_name)
-                            if field_idx == -1:
-                                print('Le champ ' + field_name + ' non présent dans la couche ' + layer.name())
-                            else:
-                                from_layer.setSubsetString('(' + filter_za_zpm + ') AND ' + expression)
-
-                        elif len(selected_za_zpa_data) > 0:
-
-
-                            field_zpm_idx = layer.fields().indexFromName('za_zpm')
-                            field_zpa_idx = layer.fields().indexFromName('za_zpa')
-                            if field_zpa_idx == -1 and field_zpm_idx != -1:
-                                from_layer.setSubsetString('(' + filter_za_zpm + ') AND ' + expression)
-                            elif field_zpm_idx == -1:
-                                from_layer.setSubsetString('(' + filter_za_nro + ') AND ' + expression)
-                            else:
-                                from_layer.setSubsetString('(' + filter_za_zpa + ') AND ' + expression)
-
-                        elif len(selected_commune_data) > 0:
-
-
-
-                            from_layer.setSubsetString(filter_commune + ' AND ' + expression)
-
-
-
-
+                    self.filter_advanced(expression, layer_name, from_layer)
 
             if self.action == 'end':
-                for layer in self.layers:
+                for layer in self.layers['sql']:
+                    if isinstance(layer, QgsVectorLayer):
+                        iface.vectorLayerTools().stopEditing(layer,False)
+                        layer.setSubsetString('')
+                for layer in self.layers['shape']:
                     if isinstance(layer, QgsVectorLayer):
                         iface.vectorLayerTools().stopEditing(layer,False)
                         layer.setSubsetString('')
