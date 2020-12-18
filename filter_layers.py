@@ -232,6 +232,15 @@ class FilterLayers:
     def select_tab_index(self, i):
         self.current_index = i
 
+        if self.current_index == 1:
+            self.populate.populate_layers()
+
+        # elif self.current_index == 2:
+        #     self.populate.populate_za_nro()
+        #     self.populate.populate_za_zpm()
+        #     self.populate.populate_za_zpa()
+        #     self.populate.populate_commune()
+
     def update_expression(self, text):
 
         def get_text_cursor(self):

@@ -490,7 +490,7 @@ class populateComboBox:
 
         layers = PROJECT.mapLayers().values()
 
-        self.dockwidget.comboBox_multi_layers.clear()
+
 
         list_layers = []
         for layer in layers:
@@ -498,19 +498,21 @@ class populateComboBox:
                 layer_name = layer.name()
                 list_layers.append(layer_name)
 
-                self.dockwidget.comboBox_multi_layers.addItem(layer_name)
 
 
 
+        self.dockwidget.comboBox_multi_layers.clear()
         self.dockwidget.comboBox_select_layers.clear()
+        self.dockwidget.comboBox_multi_layers.addItems(list_layers)
         self.dockwidget.comboBox_select_layers.addItems(list_layers)
         self.dockwidget.comboBox_select_layers.selectAllOptions()
 
 
     def populate_fields_multi(self, layer_name):
         print(layer_name)
-        layer = PROJECT.mapLayersByName(layer_name)[0]
-        self.dockwidget.mFieldComboBox_multi_fields.setLayer(layer)
+        if layer_name != '':
+            layer = PROJECT.mapLayersByName(layer_name)[0]
+            self.dockwidget.mFieldComboBox_multi_fields.setLayer(layer)
 
 
     def populate_za_nro(self):
