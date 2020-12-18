@@ -22,6 +22,7 @@ class FilterLayers_(QgsTask):
         self.populate = populateComboBox(self.dockwidget)
 
         self.filter_from = self.dockwidget.checkBox_filter_from.checkState()
+        print(self.current_index)
 
     def create_expressions(self, field):
 
@@ -196,9 +197,14 @@ class FilterLayers_(QgsTask):
 
             self.create_expressions('commune')
 
-            expression = ''
             field_name = 'za_zpm'
             from_layer = PROJECT.mapLayersByName(LAYERS_NAME['CONTOURS_COMMUNES'][0])[0]
+            if 'dbname' in from_layer.dataProvider().dataSourceUri():
+                layer_type = 'sql'
+                expression = self.filter_commune['sql']
+            else:
+                layer_type = 'shape'
+                expression = self.filter_commune['shape']
             self.filter_from = 2
             self.filter_advanced(expression,from_layer, field_name)
 
@@ -208,12 +214,7 @@ class FilterLayers_(QgsTask):
 
     def filter_advanced(self, expression, from_layer, field_name):
 
-        if 'dbname' in from_layer.dataProvider().dataSourceUri():
-            layer_type = 'sql'
-            expression = self.filter_commune['sql']
-        else:
-            layer_type = 'shape'
-            expression = self.filter_commune['shape']
+
 
         print(expression)
         if self.filter_from == 2:
@@ -244,16 +245,16 @@ class FilterLayers_(QgsTask):
 
             for feature in from_layer.getFeatures():
                 feature_field = feature.attributes()[idx]
+                if feature_field != NULL:
+                    if ',' in feature_field:
+                        feature_array = feature_field.split(',')
+                        for feat_field in feature_array:
+                            if feat_field not in list_items:
+                                list_items.append(feat_field)
 
-                if ',' in feature_field:
-                    feature_array = feature_field.split(',')
-                    for feat_field in feature_array:
-                        if feat_field not in list_items:
-                            list_items.append(feat_field)
-
-                else:
-                    if feature_field not in list_items:
-                        list_items.append(feature_field)
+                    else:
+                        if feature_field not in list_items:
+                            list_items.append(feature_field)
 
 
             for item in list_items:
@@ -309,7 +310,8 @@ class FilterLayers_(QgsTask):
 
             elif len(self.selected_commune_data) > 0:
                 from_layer.setSubsetString(self.filter_commune[layer_type] + ' AND ' + expression)
-
+            else:
+                from_layer.setSubsetString(expression)
 
 
 
