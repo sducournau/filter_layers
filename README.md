@@ -1,4 +1,4 @@
-# <img src="https://github.com/sducournau/filter_layers/blob/main/icon.png?raw=true" width="50" height="50"> Filtrage des couches (FTTH)
+# <img src="https://github.com/sducournau/filter_layers/blob/master/icon.png?raw=true" width="50" height="50"> Filtrage des couches (FTTH)
 
 ## Prérequis
 
@@ -8,7 +8,7 @@ Pour pouvoir faire fonctionner le plugin correctement il faudra dans un premier 
 -	regexp
 
 Pour ce faire, cherchez dans la barre de recherche Windows le logiciel « OSGeo4W Shell » et lancez le programme.
-Plusieurs commandes doivent être rentrées (copier/coller) et validées avec la touche Entrée. 
+Plusieurs commandes doivent être rentrées (copier/coller) et validées avec la touche Entrée.
 
 Une fois dans l’invite de commande, tapez la commande suivante :
 ```bash
