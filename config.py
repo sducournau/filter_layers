@@ -28,3 +28,10 @@ LAYERS_NAME = {
                 'INFRASTRUCTURE':('infrastructure', 'project'),
             }
 GROUP_NAME = 'ETUDES_AERIENNES'
+
+FIELDS_NAME = {
+                'ZA_NRO':('za_nro', 'zone'),
+                'ZA_ZPM':('za_zpm', 'zone'),
+                'ZA_ZPA':('za_zpa', 'zone')
+
+}
