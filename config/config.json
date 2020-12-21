@@ -1,0 +1,35 @@
+{
+   "LAYERS_NAME":{
+      "CONTOURS_COMMUNES":[
+         "contours_communes",
+         "zone"
+      ],
+      "ZONE_DE_PA":[
+         "zone_de_pa",
+         "zone"
+      ],
+      "ZONE_DE_PM":[
+         "zone_de_pm",
+         "zone"
+      ],
+      "ZONE_DE_NRO":[
+         "zone_de_nro",
+         "zone"
+      ]
+
+   },
+   "FIELDS_NAME":{
+      "ZA_NRO":[
+         "za_nro",
+         "zone"
+      ],
+      "ZA_ZPM":[
+         "za_zpm",
+         "zone"
+      ],
+      "ZA_ZPA":[
+         "za_zpa",
+         "zone"
+      ]
+   }
+}
