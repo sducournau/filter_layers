@@ -373,6 +373,11 @@ class FilterLayers:
                 self.populate.populate_za_zpa()
                 self.populate.populate_commune()
 
+                self.dockwidget.comboBox_select_za_nro.currentIndexChanged.connect(self.populate.populate_za_zpm)
+                self.dockwidget.comboBox_select_za_nro.currentIndexChanged.connect(self.populate.populate_za_zpa)
+                self.dockwidget.comboBox_select_za_nro.currentIndexChanged.connect(self.populate.populate_commune)
+
+                self.dockwidget.comboBox_select_za_zpm.currentIndexChanged.connect(self.populate.populate_za_zpa)
 
                 self.dockwidget.pushButton_filter_start.clicked.connect(partial(self.managerTask,'start'))
                 self.dockwidget.pushButton_filter_end.clicked.connect(partial(self.managerTask,'end'))

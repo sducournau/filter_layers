@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>331</width>
+    <width>368</width>
     <height>767</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>300</width>
-    <height>450</height>
+    <width>350</width>
+    <height>350</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>325</width>
+    <height>0</height>
    </size>
   </property>
   <property name="palette">
@@ -250,6 +256,32 @@ subcontrol-position: top;
 subcontrol-origin: margin;
 }
 
+QScrollBar:horizontal {
+border: none;
+background: transparent;
+width:10px;
+
+}
+QScrollBar::handle:horizontal {
+border: none;
+background: #bdc3c7;
+width:5px;
+
+}
+
+QScrollBar::add-line:horizontal {
+background: transparent;
+height: 5px;
+subcontrol-position: bottom;
+subcontrol-origin: margin;
+}
+QScrollBar::sub-line:horizontal {
+background: transparent;
+height: 5px;
+subcontrol-position: top;
+subcontrol-origin: margin;
+}
+
 
 QgsCheckableComboBox
 {
@@ -471,14 +503,14 @@ color:black;</string>
        <enum>QFrame::Panel</enum>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page_5">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>301</width>
+         <width>338</width>
          <height>491</height>
         </rect>
        </property>
@@ -576,7 +608,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>301</width>
+         <width>338</width>
          <height>491</height>
         </rect>
        </property>
@@ -678,7 +710,7 @@ QComboBox QAbstractItemView {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>301</width>
+         <width>338</width>
          <height>491</height>
         </rect>
        </property>
@@ -945,7 +977,7 @@ QComboBox QAbstractItemView {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>301</width>
+         <width>338</width>
          <height>491</height>
         </rect>
        </property>
@@ -954,8 +986,8 @@ QComboBox QAbstractItemView {
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
            <layout class="QGridLayout" name="gridLayout_buttons_filter">
             <item row="1" column="1">
              <widget class="QPushButton" name="pushButton_not_equal">
@@ -1787,12 +1819,12 @@ border-radius:2px;
             </item>
            </layout>
           </item>
-          <item row="3" column="0">
+          <item>
            <widget class="QPlainTextEdit" name="plainTextEdit_expression">
             <property name="minimumSize">
              <size>
-              <width>100</width>
-              <height>40</height>
+              <width>0</width>
+              <height>30</height>
              </size>
             </property>
             <property name="baseSize">
@@ -1860,7 +1892,7 @@ border: 2px solid black;
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item>
            <layout class="QFormLayout" name="formLayout_2">
             <item row="4" column="1">
              <layout class="QGridLayout" name="gridLayout_3">
@@ -2109,7 +2141,7 @@ QCheckBox::indicator {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>301</width>
+         <width>338</width>
          <height>491</height>
         </rect>
        </property>
