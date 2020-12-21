@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>368</width>
+    <width>350</width>
     <height>767</height>
    </rect>
   </property>
@@ -503,14 +503,14 @@ color:black;</string>
        <enum>QFrame::Panel</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page_5">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>338</width>
+         <width>320</width>
          <height>491</height>
         </rect>
        </property>
@@ -608,7 +608,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>338</width>
+         <width>320</width>
          <height>491</height>
         </rect>
        </property>
@@ -710,7 +710,7 @@ QComboBox QAbstractItemView {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>338</width>
+         <width>320</width>
          <height>491</height>
         </rect>
        </property>
@@ -726,6 +726,115 @@ QComboBox QAbstractItemView {
           <property name="fieldGrowthPolicy">
            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
           </property>
+          <item row="0" column="1">
+           <widget class="QgsCheckableComboBox" name="comboBox_select_za_nro">
+            <property name="baseSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QgsCheckableComboBox
+{
+ background-color:#bdc3c7;
+border: 1px solid black;
+border-radius: 3px;
+padding: 3px 3px 3px 3px;
+color:black;
+
+}
+
+QgsCheckableComboBox:hover
+{
+
+border: 2px solid black;
+
+}
+
+QComboBox QAbstractItemView {
+  
+  background: #bdc3c7;
+  selection-background-color: #34495e;
+}
+
+QComboBox QAbstractItemView {
+  
+  background: #bdc3c7;
+  selection-background-color: #34495e;
+}
+
+</string>
+            </property>
+            <property name="separator">
+             <string>|</string>
+            </property>
+            <property name="defaultText">
+             <string>NRO</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QgsCheckableComboBox" name="comboBox_select_za_zpm">
+            <property name="baseSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QgsCheckableComboBox
+{
+ background-color:#bdc3c7;
+border: 1px solid black;
+border-radius: 3px;
+padding: 3px 3px 3px 3px;
+color:black;
+
+}
+
+QgsCheckableComboBox:hover
+{
+
+border: 2px solid black;
+
+}
+
+QComboBox QAbstractItemView {
+  
+  background: #bdc3c7;
+  selection-background-color: #34495e;
+}
+
+
+
+
+</string>
+            </property>
+            <property name="separator">
+             <string>|</string>
+            </property>
+            <property name="defaultText">
+             <string>PMZ</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1">
            <widget class="QgsCheckableComboBox" name="comboBox_select_za_zpa">
             <property name="maximumSize">
@@ -862,112 +971,6 @@ QComboBox QAbstractItemView {
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QgsCheckableComboBox" name="comboBox_select_za_zpm">
-            <property name="baseSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Segoe UI</family>
-              <pointsize>10</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QgsCheckableComboBox
-{
- background-color:#bdc3c7;
-border: 1px solid black;
-border-radius: 3px;
-padding: 3px 3px 3px 3px;
-color:black;
-
-}
-
-QgsCheckableComboBox:hover
-{
-
-border: 2px solid black;
-
-}
-
-QComboBox QAbstractItemView {
-  
-  background: #bdc3c7;
-  selection-background-color: #34495e;
-}
-
-
-
-
-</string>
-            </property>
-            <property name="separator">
-             <string>|</string>
-            </property>
-            <property name="defaultText">
-             <string>PMZ</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QgsCheckableComboBox" name="comboBox_select_za_nro">
-            <property name="baseSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Segoe UI</family>
-              <pointsize>10</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QgsCheckableComboBox
-{
- background-color:#bdc3c7;
-border: 1px solid black;
-border-radius: 3px;
-padding: 3px 3px 3px 3px;
-color:black;
-
-}
-
-QgsCheckableComboBox:hover
-{
-
-border: 2px solid black;
-
-}
-
-QComboBox QAbstractItemView {
-  
-  background: #bdc3c7;
-  selection-background-color: #34495e;
-}
-
-
-
-
-</string>
-            </property>
-            <property name="separator">
-             <string>|</string>
-            </property>
-            <property name="defaultText">
-             <string>NRO</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
        </layout>
@@ -977,7 +980,7 @@ QComboBox QAbstractItemView {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>338</width>
+         <width>320</width>
          <height>491</height>
         </rect>
        </property>
@@ -2141,7 +2144,7 @@ QCheckBox::indicator {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>338</width>
+         <width>320</width>
          <height>491</height>
         </rect>
        </property>

@@ -538,7 +538,7 @@ class populateComboBox:
     def populate_za_zpm(self):
 
 
-
+        print('populate_pmz')
         list_za_zpm = []
 
         layer = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_PM'][0])[0]
@@ -602,7 +602,7 @@ class populateComboBox:
             layer_selection = layer.selectedFeatures()
 
 
-        else:
+        elif len(selected_za_nro_data) < 1 and len(selected_za_zpm_data) < 1:
             layer_selection = layer.getFeatures()
 
         for feature in layer_selection:
