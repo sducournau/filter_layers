@@ -2431,7 +2431,7 @@ padding: 3px 3px 3px 3px;
         </property>
         <property name="baseSize">
          <size>
-          <width>200</width>
+          <width>100</width>
           <height>30</height>
          </size>
         </property>
