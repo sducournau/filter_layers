@@ -79,7 +79,7 @@ class FilterLayers_(QgsTask):
             list_za_nro = {}
             list_za_nro['sql'] = []
             list_za_nro['shape'] = []
-            
+
             for item in self.selected_za_zpa_data:
                 item_zpm = re.search('[A-Z0-9_]*_PA',item)[0][:-3]
 
@@ -545,6 +545,7 @@ class populateComboBox:
 
 
         try:
+            print('populate_nro')
             list_za_nro = []
 
             layer = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_NRO'][0])[0]
@@ -609,7 +610,7 @@ class populateComboBox:
     def populate_za_zpa(self):
 
         try:
-
+            print('populate_zpa')
             list_za_zpa = []
 
             layer = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_PA'][0])[0]
@@ -621,14 +622,14 @@ class populateComboBox:
             selected_za_zpm = []
 
 
-            if len(selected_za_nro_data) > 0:
+            if len(selected_za_nro_data) > 0 and len(selected_za_zpm_data) < 1:
                 for item in selected_za_nro_data:
                     selected_za_nro.append('"za_nro"  ILIKE \'' + str(item) + '\'')
                 filter_za_nro = ' OR '.join(selected_za_nro)
                 layer.selectByExpression(filter_za_nro, QgsVectorLayer.SetSelection)
                 layer_selection = layer.selectedFeatures()
 
-            elif len(selected_za_zpm_data) > 0:
+            elif (len(selected_za_zpm_data) > 0 and len(selected_za_nro_data) < 1) or (len(selected_za_zpm_data) > 0 and len(selected_za_nro_data) > 0):
                 for item in selected_za_zpm_data:
                     selected_za_zpm.append('"za_zpm"  ILIKE \'' + str(item) + '\'')
                 filter_za_zpm = ' OR '.join(selected_za_nro)
@@ -659,7 +660,7 @@ class populateComboBox:
     def populate_commune(self):
 
         try:
-
+            print('populate_commune')
             list_commune = []
 
             layer = PROJECT.mapLayersByName(LAYERS_NAME['CONTOURS_COMMUNES'][0])[0]
