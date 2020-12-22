@@ -425,7 +425,7 @@ class FilterLayers:
                 self.dockwidget.pushButton_filter_start.setIcon(icon)
 
 
-                icon = QtGui.QIcon(os.path.join(DIR_PLUGIN,  "images/reset.png"))
+                icon = QtGui.QIcon(os.path.join(DIR_PLUGIN,  "images/filter_erase.png"))
                 self.dockwidget.pushButton_filter_end.setIcon(icon)
 
 
