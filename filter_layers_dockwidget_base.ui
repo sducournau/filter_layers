@@ -2425,7 +2425,7 @@ padding: 3px 3px 3px 3px;
        <widget class="QgsCheckableComboBox" name="comboBox_select_layers">
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
+          <width>100</width>
           <height>30</height>
          </size>
         </property>
