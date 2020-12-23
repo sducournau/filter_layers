@@ -6,7 +6,7 @@
 name=Filtrage des couches
 qgisMinimumVersion=3.0
 description=Un plugin qui permet de filtrer les couches de votre projet FTTH
-version=1.3
+version=1.4
 author=Simon Ducournau
 email=simon.ducournau@gmail.com
 
