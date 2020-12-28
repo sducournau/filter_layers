@@ -18,7 +18,7 @@
   </property>
   <property name="baseSize">
    <size>
-    <width>325</width>
+    <width>350</width>
     <height>0</height>
    </size>
   </property>
@@ -511,8 +511,8 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>101</width>
-         <height>146</height>
+         <width>382</width>
+         <height>520</height>
         </rect>
        </property>
        <attribute name="label">
@@ -782,8 +782,8 @@ QComboBox QAbstractItemView {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>244</width>
-         <height>337</height>
+         <width>382</width>
+         <height>520</height>
         </rect>
        </property>
        <attribute name="label">
@@ -1948,8 +1948,8 @@ QCheckBox::indicator {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>94</width>
-         <height>24</height>
+         <width>382</width>
+         <height>520</height>
         </rect>
        </property>
        <attribute name="label">
