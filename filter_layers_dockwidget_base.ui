@@ -511,8 +511,8 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>382</width>
-         <height>495</height>
+         <width>101</width>
+         <height>146</height>
         </rect>
        </property>
        <attribute name="label">
@@ -782,8 +782,8 @@ QComboBox QAbstractItemView {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>382</width>
-         <height>495</height>
+         <width>244</width>
+         <height>337</height>
         </rect>
        </property>
        <attribute name="label">
@@ -1948,8 +1948,8 @@ QCheckBox::indicator {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>382</width>
-         <height>495</height>
+         <width>94</width>
+         <height>24</height>
         </rect>
        </property>
        <attribute name="label">
