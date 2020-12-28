@@ -232,22 +232,22 @@ class FilterLayers:
         selected_za_zpa_data = self.dockwidget.comboBox_select_za_zpa.checkedItems()
         selected_commune_data = self.dockwidget.comboBox_select_commune.checkedItems()
 
-
-        if len(selected_za_zpa_data) > 0:
-            self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_PA'][0])[0]
-        elif len(selected_za_zpm_data) > 0:
-            self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_PM'][0])[0]
-        elif len(selected_za_nro_data) > 0:
-            self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_NRO'][0])[0]
-        elif len(selected_commune_data) > 0:
-            self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['CONTOURS_COMMUNES'][0])[0]
-        else:
-            self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_PM'][0])[0]
-
-
+        if self.task_name == 'start':
+            if len(selected_za_zpa_data) > 0:
+                self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_PA'][0])[0]
+            elif len(selected_za_zpm_data) > 0:
+                self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_PM'][0])[0]
+            elif len(selected_za_nro_data) > 0:
+                self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_NRO'][0])[0]
+            elif len(selected_commune_data) > 0:
+                self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['CONTOURS_COMMUNES'][0])[0]
+            else:
+                self.layer_zoom = PROJECT.mapLayersByName(LAYERS_NAME['ZONE_DE_PM'][0])[0]
 
 
-        self.task_filter.taskCompleted.connect(lambda: zoom_to_features(self.layer_zoom, t0))
+
+
+            self.task_filter.taskCompleted.connect(lambda: zoom_to_features(self.layer_zoom, t0))
 
 
     def select_tab_index(self, i):
