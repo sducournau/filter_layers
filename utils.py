@@ -21,6 +21,7 @@ class FilterLayers_(QgsTask):
         self.current_index = current_index
         self.populate = populateComboBox(self.dockwidget)
 
+
         self.filter_from = self.dockwidget.checkBox_filter_from.checkState()
         print(self.current_index)
 
@@ -234,7 +235,10 @@ class FilterLayers_(QgsTask):
 
     def filter_advanced(self, expression, from_layer, field_name):
 
-
+        if 'dbname' in from_layer.dataProvider().dataSourceUri():
+            layer_type = 'sql'
+        else:
+            layer_type = 'shape'
 
         print(expression)
         if self.filter_from == 2:
@@ -304,6 +308,7 @@ class FilterLayers_(QgsTask):
 
 
         else:
+
             if len(self.selected_za_nro_data) > 0:
                 from_layer.setSubsetString('(' + self.filter_za_nro[layer_type] + ') AND ' + expression)
 
@@ -387,12 +392,13 @@ class FilterLayers_(QgsTask):
 
 
                 elif self.current_index == 2:
-
+                    self.filter_basic()
                     expression = self.dockwidget.plainTextEdit_expression.toPlainText()
                     expression = expression.replace("'", "\'")
                     layer_name = self.dockwidget.comboBox_multi_layers.currentText()
                     field_name = self.dockwidget.mFieldComboBox_multi_fields.currentText()
                     from_layer = PROJECT.mapLayersByName(layer_name)[0]
+
                     self.filter_advanced(expression, from_layer, field_name)
 
             if self.action == 'end':
