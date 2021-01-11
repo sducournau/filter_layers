@@ -218,7 +218,7 @@ class FilterLayers:
 
         self.task_name = task_name
         t0 = time.time()
-        iface.mainWindow().setWindowTitle("FILTRING...")
+        print("FILTRING...")
         self.task_filter = FilterLayers_('Filtrer les couches' ,self.dockwidget, self.task_name,self.current_index)
         QgsApplication.taskManager().addTask(self.task_filter)
 
@@ -264,32 +264,44 @@ class FilterLayers:
 
     def update_expression(self, text):
 
-        def get_text_cursor(self):
+        def get_text_cursor():
             return self.dockwidget.plainTextEdit_expression.textCursor()
 
-        def set_text_cursor_pos(self, value):
-            tc = self.get_text_cursor()
+        def set_text_cursor_pos(value):
+            tc = get_text_cursor()
             tc.setPosition(value, QtGui.QTextCursor.KeepAnchor)
             self.dockwidget.plainTextEdit_expression.setTextCursor(tc)
 
-        def get_text_cursor_pos(self):
-            return self.get_text_cursor().position()
+        def get_text_cursor_pos():
+            return get_text_cursor().position()
 
-        def get_text_selection(self):
-            cursor = self.get_text_cursor()
+        def get_text_selection():
+            cursor = get_text_cursor()
             return cursor.selectionStart(), cursor.selectionEnd()
 
-        def set_text_selection(self, start, end):
-            cursor = self.get_text_cursor()
+        def set_text_selection(start, end):
+            cursor = get_text_cursor()
             cursor.setPosition(start)
             cursor.setPosition(end, QtGui.QTextCursor.KeepAnchor)
             self.dockwidget.plainTextEdit_expression.setTextCursor(cursor)
 
 
-
         expression = self.dockwidget.plainTextEdit_expression.toPlainText()
-        expression += text
+        pos = get_text_cursor_pos()
+        pos1, pos2 = get_text_selection()
+        print(pos1, pos2)
+        if pos2 > 0:
+
+            if pos1 < 1:
+                expression  = text+expression[pos2:]
+            else:
+                expression  = expression[:pos1]+text+expression[pos2:]
+        else:
+            expression  = expression[:pos]+text+expression[pos:]
         self.dockwidget.plainTextEdit_expression.setPlainText(expression)
+        set_text_selection(len(expression),len(expression))
+        set_text_cursor_pos(len(expression))
+
 
     def insert_field(self):
         field_name = self.dockwidget.mFieldComboBox_insert_fields.currentText()

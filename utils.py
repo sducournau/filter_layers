@@ -489,7 +489,7 @@ class msgProgress:
 
 def zoom_to_features(layer, t0):
     end = time.time() - t0
-    iface.mainWindow().setWindowTitle("DONE" + " IN " + str(end) + " s.")
+    print("DONE" + " IN " + str(end) + " s.")
     canvas = iface.mapCanvas()
     canvas.setExtent(layer.extent())
     canvas.refresh()
