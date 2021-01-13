@@ -253,7 +253,7 @@ class FilterLayers:
     def select_tab_index(self, i):
         self.current_index = i
 
-        if self.current_index == 1:
+        if self.current_index == 0:
             self.populate.populate_layers()
 
         # elif self.current_index == 2:
