@@ -638,7 +638,7 @@ class populateComboBox:
             elif (len(selected_za_zpm_data) > 0 and len(selected_za_nro_data) < 1) or (len(selected_za_zpm_data) > 0 and len(selected_za_nro_data) > 0):
                 for item in selected_za_zpm_data:
                     selected_za_zpm.append('"za_zpm"  ILIKE \'' + str(item) + '\'')
-                filter_za_zpm = ' OR '.join(selected_za_nro)
+                filter_za_zpm = ' OR '.join(selected_za_zpm)
                 layer.selectByExpression(filter_za_zpm, QgsVectorLayer.SetSelection)
                 layer_selection = layer.selectedFeatures()
 
