@@ -677,9 +677,9 @@ class populateComboBox:
 
             if len(selected_za_nro_data) > 0:
                 for item in selected_za_nro_data:
-                    selected_za_nro.append('"za_nro"  ILIKE \'' + str(item) + '\'')
+                    selected_za_nro.append('"za_nro"  ~ \'' + str(item) + '\'')
                 filter_za_nro = ' OR '.join(selected_za_nro)
-
+                
                 layer.selectByExpression(filter_za_nro, QgsVectorLayer.SetSelection)
                 layer_selection = layer.selectedFeatures()
 
