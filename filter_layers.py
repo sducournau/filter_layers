@@ -214,7 +214,7 @@ class FilterLayers:
     def managerTask(self, task_name):
 
 
-
+        
 
         self.task_name = task_name
         t0 = time.time()
@@ -248,6 +248,9 @@ class FilterLayers:
 
 
             self.task_filter.taskCompleted.connect(lambda: zoom_to_features(self.layer_zoom, t0))
+
+
+
 
 
     def select_tab_index(self, i):

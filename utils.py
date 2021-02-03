@@ -404,11 +404,11 @@ class FilterLayers_(QgsTask):
             if self.action == 'end':
                 for layer in self.layers['sql']:
                     if isinstance(layer, QgsVectorLayer):
-                        iface.vectorLayerTools().stopEditing(layer,False)
+
                         layer.setSubsetString('')
                 for layer in self.layers['shape']:
                     if isinstance(layer, QgsVectorLayer):
-                        iface.vectorLayerTools().stopEditing(layer,False)
+                        
                         layer.setSubsetString('')
                 self.populate.populate_za_nro()
                 self.populate.populate_za_zpm()
@@ -679,7 +679,7 @@ class populateComboBox:
                 for item in selected_za_nro_data:
                     selected_za_nro.append('"za_nro"  ~ \'' + str(item) + '\'')
                 filter_za_nro = ' OR '.join(selected_za_nro)
-                
+
                 layer.selectByExpression(filter_za_nro, QgsVectorLayer.SetSelection)
                 layer_selection = layer.selectedFeatures()
 
