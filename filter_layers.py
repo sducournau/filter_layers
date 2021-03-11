@@ -214,7 +214,7 @@ class FilterLayers:
     def managerTask(self, task_name):
 
 
-        
+
 
         self.task_name = task_name
         t0 = time.time()
@@ -344,7 +344,20 @@ class FilterLayers:
         # remove the toolbar
         del self.toolbar
 
-    #--------------------------------------------------------------------------
+
+    #--------------------------------------------------------------------------------#
+    #                                 PLUGINS                                        #
+    #--------------------------------------------------------------------------------#
+
+
+    def change_background_color(self):
+        color = self.dockwidget.mColorButton.color()
+        color_value = color.name()
+        style = "QWidget { background-color: %s; }" % color_value
+        self.dockwidget.toolBox_filtre.setAutoFillBackground(True)
+        self.dockwidget.toolBox_filtre.setStyleSheet(style)
+        self.dockwidget.toolBox_filtre.update()
+
 
     def run(self):
         """Run method that loads and starts the plugin"""
@@ -446,7 +459,15 @@ class FilterLayers:
 
 
                 icon = QtGui.QIcon(os.path.join(DIR_PLUGIN,  "images/filter_multi.png"))
+
+
                 self.dockwidget.checkBox_filter_from.setIcon(icon)
+
+
+                #plugins
+
+                self.dockwidget.pushButton_color.clicked.connect(self.change_background_color)
+
 
 
                 self.dockwidget.comboBox_multi_layers.currentTextChanged.connect(self.populate.populate_fields_multi)

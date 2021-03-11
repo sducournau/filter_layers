@@ -345,6 +345,223 @@ background: #bdc3c7;;
 }</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="7" column="1" colspan="3">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QPushButton" name="pushButton_filter_start">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+          <underline>false</underline>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::StrongFocus</enum>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::DefaultContextMenu</enum>
+        </property>
+        <property name="toolTip">
+         <string>Filtrer</string>
+        </property>
+        <property name="statusTip">
+         <string>Filtrer</string>
+        </property>
+        <property name="whatsThis">
+         <string>Filtrer</string>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover
+{
+
+background-color: #34495e;
+}
+QPushButton:pressed
+{
+  background-color: #2c3e50;
+	  border: 2px solid black;
+}
+
+QPushButton
+{
+  border: 0px solid black;
+  border-radius: 6px;
+ background-color: #bdc3c7;
+padding: 3px 3px 3px 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>images/filter.png</normaloff>images/filter.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_filter_end">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Réinitialiser</string>
+        </property>
+        <property name="statusTip">
+         <string>Réinitialiser</string>
+        </property>
+        <property name="whatsThis">
+         <string>Réinitialiser</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:hover
+{
+
+background-color: #34495e;
+}
+QPushButton:pressed
+{
+  background-color: #2c3e50;
+	  border: 2px solid black;
+}
+
+QPushButton
+{
+  border: 0px solid black;
+  border-radius: 6px;
+ background-color: #bdc3c7;
+padding: 3px 3px 3px 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>images/filter_erase.png</normaloff>images/filter_erase.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QgsCheckableComboBox" name="comboBox_select_layers">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>100</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="tabletTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QgsCheckableComboBox
+{
+ background-color:#bdc3c7;
+border: 1px solid black;
+border-radius: 3px;
+padding: 3px 3px 3px 3px;
+color:black;
+
+}
+
+QgsCheckableComboBox:hover
+{
+
+border: 2px solid black;
+
+}
+
+QComboBox QAbstractItemView {
+
+  background: #bdc3c7;
+  selection-background-color: #34495e;
+	color:black;
+}
+
+
+
+
+</string>
+        </property>
+        <property name="currentText">
+         <string>Couche…</string>
+        </property>
+        <property name="maxVisibleItems">
+         <number>15</number>
+        </property>
+        <property name="minimumContentsLength">
+         <number>1</number>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="separator">
+         <string>|</string>
+        </property>
+        <property name="defaultText">
+         <string>Couches à filtrer</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="6" column="1" colspan="3">
      <widget class="QToolBox" name="toolBox_filtre">
       <property name="font">
@@ -406,15 +623,15 @@ QComboBox QAbstractItemView {
        <enum>QFrame::Panel</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page_5">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>382</width>
-         <height>520</height>
+         <width>378</width>
+         <height>481</height>
         </rect>
        </property>
        <attribute name="label">
@@ -482,23 +699,23 @@ border-radius:5px;
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;COUCHES A FILTRER&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sélectionner les couches sur lequel le filtre va s'opérer.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vous pouvez faire une sélection multiple, sélectionner/déselectionner toutes les couches du projet par un clic droit.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Sélectionner les couches sur lequel le filtre va s'opérer.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Vous pouvez faire une sélection multiple, sélectionner/déselectionner toutes les couches du projet par un clic droit.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;BASIQUE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sélectionner le filtre pré-paramétré que vous voulez appliquer sur votre sélection de couches.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vous pouvez faire une sélection multiple, sélectionner/déselectionner toutes les valeurs par un clic droit.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Par défaut vous pouvez filtrer par NRO, PMZ, PA et commune.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Sélectionner le filtre pré-paramétré que vous voulez appliquer sur votre sélection de couches.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Vous pouvez faire une sélection multiple, sélectionner/déselectionner toutes les valeurs par un clic droit.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Par défaut vous pouvez filtrer par NRO, PMZ, PA et commune.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:600;&quot;&gt;AVANCE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Permet d'opérer des filtres plus spécifiques en fonction de vos besoin.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Par défaut le filtre s'applique sur la couche sélectionnée au bas de l'éditeur d'expression.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Si vous souhaitez appliquer un filtre multiple de type &amp;quot;Grouper par&amp;quot; vous pouvez activer le filtrage multi et choisir un champ par lequel regrouper et filtrer les résultats.&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Quelques exemples d'utilisation utiles sous la forme :&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;expression | couche | champ&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Permet d'opérer des filtres plus spécifiques en fonction de vos besoin.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Par défaut le filtre s'applique sur la couche sélectionnée au bas de l'éditeur d'expression.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Si vous souhaitez appliquer un filtre multiple de type &amp;quot;Grouper par&amp;quot; vous pouvez activer le filtrage multi et choisir un champ par lequel regrouper et filtrer les résultats.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;Quelques exemples d'utilisation utiles sous la forme :&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;expression | couche | champ&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;&amp;quot;nb_el&amp;quot; &amp;gt; 450 | zone_de_pm | za_zpm&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;&amp;quot;n_plan&amp;quot; is not null and &amp;quot;propriet&amp;quot; like 'ENEDIS' and &amp;quot;etat&amp;quot; is null | sites_supports | za_zpm&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;id_support&amp;quot; is null | point_pb | za_zpb&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;&amp;quot;id_support&amp;quot; is null | point_pb | za_zpb&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -511,8 +728,8 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>382</width>
-         <height>520</height>
+         <width>378</width>
+         <height>481</height>
         </rect>
        </property>
        <attribute name="label">
@@ -782,8 +999,8 @@ QComboBox QAbstractItemView {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>382</width>
-         <height>520</height>
+         <width>378</width>
+         <height>481</height>
         </rect>
        </property>
        <attribute name="label">
@@ -1948,8 +2165,8 @@ QCheckBox::indicator {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>382</width>
-         <height>520</height>
+         <width>378</width>
+         <height>481</height>
         </rect>
        </property>
        <attribute name="label">
@@ -1965,6 +2182,18 @@ QCheckBox::indicator {
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="checkBox_config_select_layer_zpm_2">
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+            </font>
+           </property>
+           <property name="text">
+            <string>ZONE DE PA</string>
+           </property>
+          </widget>
+         </item>
          <item row="2" column="1">
           <widget class="QComboBox" name="comboBox_config_select_layer_zpa">
            <property name="baseSize">
@@ -2113,20 +2342,8 @@ QComboBox QAbstractItemView {
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QCheckBox" name="checkBox_config_select_layer_zpm_2">
-           <property name="font">
-            <font>
-             <family>Segoe UI</family>
-            </font>
-           </property>
-           <property name="text">
-            <string>ZONE DE PA</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="comboBox_config_select_layer_zpm">
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBox_config_select_layer_nro">
            <property name="baseSize">
             <size>
              <width>0</width>
@@ -2193,20 +2410,8 @@ QComboBox QAbstractItemView {
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="checkBox_config_select_layer_zpm">
-           <property name="font">
-            <font>
-             <family>Segoe UI</family>
-            </font>
-           </property>
-           <property name="text">
-            <string>ZONE DE PM</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="comboBox_config_select_layer_nro">
+         <item row="1" column="1">
+          <widget class="QComboBox" name="comboBox_config_select_layer_zpm">
            <property name="baseSize">
             <size>
              <width>0</width>
@@ -2285,227 +2490,46 @@ QComboBox QAbstractItemView {
            </property>
           </widget>
          </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="checkBox_config_select_layer_zpm">
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+            </font>
+           </property>
+           <property name="text">
+            <string>ZONE DE PM</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QgsColorButton" name="mColorButton">
+           <property name="color">
+            <color>
+             <red>255</red>
+             <green>170</green>
+             <blue>0</blue>
+            </color>
+           </property>
+           <property name="allowOpacity">
+            <bool>true</bool>
+           </property>
+           <property name="showNoColor">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QPushButton" name="pushButton_color">
+           <property name="text">
+            <string>Couleur</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </widget>
      </widget>
-    </item>
-    <item row="7" column="1" colspan="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QPushButton" name="pushButton_filter_start">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-          <underline>false</underline>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::StrongFocus</enum>
-        </property>
-        <property name="contextMenuPolicy">
-         <enum>Qt::DefaultContextMenu</enum>
-        </property>
-        <property name="toolTip">
-         <string>Filtrer</string>
-        </property>
-        <property name="statusTip">
-         <string>Filtrer</string>
-        </property>
-        <property name="whatsThis">
-         <string>Filtrer</string>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover
-{
-
-background-color: #34495e;
-}
-QPushButton:pressed
-{
-  background-color: #2c3e50;
-	  border: 2px solid black;
-}
-
-QPushButton
-{
-  border: 0px solid black;
-  border-radius: 6px;
- background-color: #bdc3c7;
-padding: 3px 3px 3px 3px;
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>images/filter.png</normaloff>images/filter.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>50</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_filter_end">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="toolTip">
-         <string>Réinitialiser</string>
-        </property>
-        <property name="statusTip">
-         <string>Réinitialiser</string>
-        </property>
-        <property name="whatsThis">
-         <string>Réinitialiser</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton:hover
-{
-
-background-color: #34495e;
-}
-QPushButton:pressed
-{
-  background-color: #2c3e50;
-	  border: 2px solid black;
-}
-
-QPushButton
-{
-  border: 0px solid black;
-  border-radius: 6px;
- background-color: #bdc3c7;
-padding: 3px 3px 3px 3px;
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>images/filter_erase.png</normaloff>images/filter_erase.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>50</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QgsCheckableComboBox" name="comboBox_select_layers">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>100</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="mouseTracking">
-         <bool>true</bool>
-        </property>
-        <property name="tabletTracking">
-         <bool>true</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QgsCheckableComboBox
-{
- background-color:#bdc3c7;
-border: 1px solid black;
-border-radius: 3px;
-padding: 3px 3px 3px 3px;
-color:black;
-
-}
-
-QgsCheckableComboBox:hover
-{
-
-border: 2px solid black;
-
-}
-
-QComboBox QAbstractItemView {
-
-  background: #bdc3c7;
-  selection-background-color: #34495e;
-	color:black;
-}
-
-
-
-
-</string>
-        </property>
-        <property name="currentText">
-         <string>Couches à…</string>
-        </property>
-        <property name="maxVisibleItems">
-         <number>15</number>
-        </property>
-        <property name="minimumContentsLength">
-         <number>1</number>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="separator">
-         <string>|</string>
-        </property>
-        <property name="defaultText">
-         <string>Couches à filtrer</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </item>
    </layout>
   </widget>
@@ -2515,6 +2539,11 @@ QComboBox QAbstractItemView {
    <class>QgsCheckableComboBox</class>
    <extends>QComboBox</extends>
    <header>qgscheckablecombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsColorButton</class>
+   <extends>QToolButton</extends>
+   <header>qgscolorbutton.h</header>
   </customwidget>
   <customwidget>
    <class>QgsFieldComboBox</class>
